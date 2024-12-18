@@ -1,4 +1,7 @@
 #include "MenuView.hpp"
+#include "Customer.hpp"
+
+
 #include <iostream>
 #include <string>
 using namespace std; 
@@ -15,6 +18,8 @@ void MenuView::showMenu() {
     switch (opcion) {
         case 1: {
             cout << "Menu cliente" << endl;
+            MenuCustomerView myCustomer;  
+            myCustomer.showCustomerMenu();
             break; 
         }
         case 2: {

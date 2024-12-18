@@ -7,7 +7,7 @@ using namespace std;
 class MenuCustomerView{
     public:
     MenuCustomerView();
-    void showMenu();
+    void showCustomerMenu();
 
 };
 

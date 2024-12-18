@@ -6,13 +6,13 @@ MenuCustomerView::MenuCustomerView() {
 }
 
 
-void MenuCustomerView::showMenu() {
+void MenuCustomerView::showCustomerMenu() {
     MenuCustomerView menuCustomerView; 
     int option = 0;
     cout << "Bienvenido a el banco la perra de rubio " << endl;
-    cout << "1. Quiere registrarse en ingles?" << endl;
+    cout << "1. Quiere registrarse en el banco?" << endl;
     cout << "2. Quiere salirse del banco?" << endl;
-    cout << "3. Quire saber tu estado en el banco" << endl;
+    cout << "3. Quiere saber tu estado en el banco" << endl;
     cout << "4. desea actualizar tus datos" << endl;
     cout << "0. Exit" << std::endl;
     cout << std::endl; 
