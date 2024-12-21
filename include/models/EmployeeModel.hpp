@@ -1,8 +1,9 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include "PersonModel.hpp"
 
-class EmployeeModel {
+class EmployeeModel : public PersonModel{
     private:
         float wage;            // salario
         std::string timetable; // horario
@@ -17,5 +18,5 @@ class EmployeeModel {
     void set_wage(float);
     void set_timetable(std::string);
     int load_id();
-    // std::string ToString() override;
+    std::string ToString() override;
 };

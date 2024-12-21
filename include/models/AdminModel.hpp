@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
-class AdminModel { /*Heredar de Persona */
+class AdminModel { 
 private:
     std::string username = "XxArgelDarkxX";
     std::string password = "1117018254An";
