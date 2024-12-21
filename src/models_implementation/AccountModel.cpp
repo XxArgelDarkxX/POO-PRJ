@@ -20,14 +20,15 @@ inline string load_id() {
 }
 
 AccountModel::AccountModel(string id_, string owner, string accountNumber,
-                           float balance) {
+                           float balance,string id_client) {
   owner_name = owner;
   this->accountNumber = accountNumber;
   this->balance = balance;
   id_ = load_id();
+  this->id_client = id_client;
 }
 
-AccountModel::AccountModel(){}
+AccountModel::AccountModel() {}
 
 // id,nombre,numero_cuenta,fondo,expiracion,id_cliente
 AccountModel::AccountModel(string line_file) {
@@ -69,4 +70,3 @@ void AccountModel::SetAccountNumber(string accountNumber) {
 void AccountModel::SetExpirateDate(string expirate_Date) {
   this->expirate_Date = expirate_Date;
 }
-

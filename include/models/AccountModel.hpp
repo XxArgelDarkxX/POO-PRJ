@@ -15,7 +15,7 @@ private:
   string id_client;
   
 public:
-  AccountModel(string id, string owner,string accountNumber, float balance);
+  AccountModel(string id, string owner,string accountNumber, float balance, string id_client);
   AccountModel(string line);
   AccountModel();
   float GetBalance(); //get_fondos

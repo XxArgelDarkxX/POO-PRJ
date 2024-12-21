@@ -8,6 +8,7 @@ ClientModel::ClientModel(string id, string name, int age,
                          vector<AccountModel> accounts, vector<CardModel> cards)
     : PersonModel(id, name, age), accounts(accounts), cards(cards) {}
 
+
 string ClientModel::ToString() { return PersonModel::ToString(); }
 
 void ClientModel::ShowInfo() {
@@ -19,4 +20,3 @@ void ClientModel::ShowInfo() {
 vector<AccountModel> ClientModel::GetAccounts() { return accounts; }
 
 vector<CardModel> ClientModel::GetCards() { return cards; }
-
