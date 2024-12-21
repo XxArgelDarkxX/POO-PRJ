@@ -21,7 +21,7 @@ int load_id(){
 int EmployeeModel::id_counter = 1;
 
 
-EmployeeModel::EmployeeModel( string name, int age, float wage_, string timetable_, int dni_)
+EmployeeModel::EmployeeModel( string name, int age, float wage_, string timetable_, string dni_)
     : PersonModel(load_id(), name, age), wage(wage_), timetable(timetable_), dni(dni_) {
         
 
@@ -51,7 +51,7 @@ std::string EmployeeModel::ToString() {
     return PersonModel::ToString() + "," + to_string(wage) + "," + timetable + "," + to_string(dni);
 }
 
- int::EmployeeModel::get_dni() {
+ string EmployeeModel::get_dni() {
     return dni;
 }
 

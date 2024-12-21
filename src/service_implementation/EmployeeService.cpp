@@ -1,5 +1,6 @@
 #include "../../include/service/EmployeeService.hpp"
 #include "../../include/models/EmployeeModel.hpp"
+#include "../../include/models/Utils.hpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -13,7 +14,7 @@ EmployeeService::EmployeeService(){
 
 
 
-bool EmployeeService::Find(int find_){
+bool EmployeeService::Find(string find_){
     string data,dni,name,wage,timetable,id,age;
 
     bool dni_find = false;
@@ -23,18 +24,14 @@ bool EmployeeService::Find(int find_){
         return false;
     }
         while(getline(registers,data)){
-        stringstream registers(data);
-            getline(registers,id,',');
-            getline(registers,name,','); 
-            getline(registers,age,',');
-            getline(registers,wage,',');
-            getline(registers,timetable,',');
-            getline(registers,dni,',');
+        auto registers = split(data, ',');
+            id = registers[0];
+            
         
        
         
 
-        if(stoi(dni) == find_){
+        if(id == find_){
             dni_find = true;
             return true;
         }
@@ -108,14 +105,13 @@ void EmployeeService::Read(){
     }
 
         while(getline(doc_employeed,data)){
-            stringstream registers(data); //convertimos la cadena de datos en un flujo de datos
-
-            getline(registers,id,',');
-            getline(registers,name,','); 
-            getline(registers,age,',');
-            getline(registers,wage,',');
-            getline(registers,timetable,',');
-            getline(registers,dni,',');
+            auto registers = split(data, ',');
+            id = registers[0];
+            name = registers[1];
+            age = registers[2];
+            wage= registers[3];
+            timetable= registers[4];
+            dni = registers[5];
 
             cout<<"id del empleado: "<<id<<endl;
             cout<<"nombre del empleado: "<<name<<endl;
@@ -128,8 +124,7 @@ void EmployeeService::Read(){
     }
 
 
-// revisar como se esta guardando en el archivo empleado hay ;y ,
-// emplear metodo read
+
 
 void EmployeeService::Update(int dni_){
     string data,name,wage,timetable,age,dni,id;

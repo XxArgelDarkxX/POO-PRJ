@@ -9,7 +9,7 @@ class EmployeeService{
 
 public:
     EmployeeService();
-    bool Find(int);
+    bool Find(string);
     void Add(EmployeeModel employee);
     void Remove(int);
     void Update(int id);

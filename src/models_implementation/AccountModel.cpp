@@ -1,4 +1,5 @@
 #include  "../../include/models/AccountModel.hpp"
+#include "../../include/models/Utils.hpp"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -92,13 +93,13 @@ void AccountModel::delete_account(string accountNumber) {
         cerr << "No se pudo abrir el archivo cuentas.csv" << endl;
     } else {
         while (getline(doc_accounts, data)) {
-            stringstream registers(data);
-            getline(registers, id, ',');
-            getline(registers, name, ',');
-            getline(registers, find_account, ',');
-            getline(registers, account_type, ',');
-            getline(registers, ammount, ',');
-            getline(registers, expirate_date, ',');
+            auto registers = split(data, ',');
+            id = registers[0];
+            name = registers[1];
+            find_account = registers[2];
+            account_type = registers[3];
+            ammount = registers[4];
+            expirate_date = registers[5];
 
             if (find_account == accountNumber) {
                 cout << "Cuenta encontrada" << endl;
@@ -134,13 +135,13 @@ void AccountModel::update_account(string accountNumber) {
     }
 
     while (getline(doc_accounts, data)) {
-        stringstream registers(data);
-        getline(registers, id, ',');
-        getline(registers, name, ',');
-        getline(registers, find_account, ',');
-        getline(registers, account_type, ',');
-        getline(registers, ammount, ',');
-        getline(registers, expirate_date, ',');
+        auto registers = split(data, ',');
+            id = registers[0];
+            name = registers[1];
+            find_account = registers[2];
+            account_type = registers[3];
+            ammount = registers[4];
+            expirate_date = registers[5];
 
         if (find_account == accountNumber) {
             found = true;

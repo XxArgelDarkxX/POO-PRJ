@@ -1,5 +1,6 @@
 #include "../../include/service/AccountService.hpp"
 #include "../../include/models/AccountModel.hpp"
+#include "../../include/models/Utils.hpp"
 #include <iostream>
 #include <random>
 #include <string>
@@ -14,7 +15,7 @@ bool permiss = false;
 AccountService::AccountService(){}
 
 bool AccountService::find(string find_){
-    string data,id,accountNumber,balance,expirate_date,name;
+    string line,id,accountNumber,balance,expirate_date,name;
 
     bool dni_find = false;
     ifstream registers("cuentas.csv",ios::in);
@@ -22,18 +23,15 @@ bool AccountService::find(string find_){
         cout<<"documento no abierto"<<endl;
         return false;
     }
-        while(getline(registers,data)){
-        stringstream registers(data);
-            getline(registers,id,',');
-            getline(registers,name,','); 
-            getline(registers,accountNumber,',');
-            getline(registers,balance,',');
-            getline(registers,expirate_date,',');
+        while(getline(registers,line)){
+        auto data = split(line,',');
+        
+            
         
        
         
 
-        if(accountNumber == find_){
+        if(data[0]== find_){
         
             return true;
         }
@@ -93,13 +91,14 @@ void AccountService::Deposit(string account_number, int _ammount) {
         cerr << "No se pudo abrir el archivo cuentas.csv" << endl;
     } else {
         while (getline(doc_accounts, data)) {
-            stringstream registers(data);
-            getline(registers, id, ',');
-            getline(registers, name, ',');
-            getline(registers, find_account, ',');
-            getline(registers, account_type, ',');
-            getline(registers, ammount, ',');
-            getline(registers, expirate_date, ',');
+            auto registers = split(data, ',');
+            id = registers[0];
+            name = registers[1];
+            find_account = registers[2];
+            account_type = registers[3];
+            ammount = registers[4];
+            expirate_date = registers[5];
+            
             // Si la cuenta es de ahorros, se le aplica un interés del 5%
             if (find_account == account_number && account_type == "ahorros") {
                 float interest = 0.05;
@@ -154,13 +153,13 @@ void AccountService::Withdraw(string account_number,int _ammount){
     } else {
      
         while (getline(doc_accounts, data)){
-            stringstream registers(data);
-            getline(registers,id,','); 
-            getline(registers,name,',');
-            getline(registers,find_account,','); 
-            getline(registers,account_type,','); 
-            getline(registers,ammount,',');
-            getline(registers,expirate_date,',');
+            auto registers = split(data, ',');
+            id = registers[0];
+            name = registers[1];
+            find_account = registers[2];
+            account_type = registers[3];
+            ammount = registers[4];
+            expirate_date = registers[5];
 
             if (find_account== account_number){
                 cout<<"Cuenta encontrada"<<endl;
@@ -210,9 +209,9 @@ void AccountService::Transfer(){
             Withdraw(account_origin,amount);
             if(permiss){
                  Deposit(account_destiny,amount);
-                 int interest = 0.05;
+                 float interest = 0.05;
                  //gananacias del banco
-                int earnings = amount + amount * interest;
+                float earnings =amount * interest;
                 ofstream doc_earnings("ganancias.csv", ios::app);
                 doc_earnings << earnings << endl;
                 doc_earnings.close();
